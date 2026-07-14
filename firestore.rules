@@ -1,0 +1,145 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // ===============================================================
+    // Global Helper Primitives (Phase 3)
+    // ===============================================================
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // ===============================================================
+    // Entity Validation Helpers (Phase 2)
+    // ===============================================================
+
+    function isValidMenuItem(data) {
+      return data.keys().hasAll(['name', 'price']) &&
+             data.keys().size() >= 2 &&
+             data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             data.price is number && data.price > 0;
+    }
+
+    function isValidStore(data) {
+      return data.keys().hasAll(['name', 'address']) &&
+             data.keys().size() >= 2 &&
+             data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             data.address is string && data.address.size() > 0 && data.address.size() <= 200;
+    }
+
+    function isValidTimeClock(data) {
+      return data.keys().hasAll(['id', 'userId', 'employeeId', 'userName', 'type', 'timestamp']) &&
+             data.id is string && data.id.size() > 0 && data.id.size() <= 128 &&
+             data.userId is string && data.userId.size() > 0 && data.userId.size() <= 128 &&
+             data.employeeId is string && data.employeeId.size() > 0 && data.employeeId.size() <= 64 &&
+             data.userName is string && data.userName.size() > 0 && data.userName.size() <= 100 &&
+             (data.type == 'in' || data.type == 'out') &&
+             data.timestamp is string && data.timestamp.size() > 0;
+    }
+
+    function isValidEmployeeRequest(data) {
+      return data.keys().hasAll(['id', 'userId', 'userName', 'type', 'status', 'createdAt']) &&
+             data.id is string && data.id.size() > 0 && data.id.size() <= 128 &&
+             data.userId is string && data.userId.size() > 0 && data.userId.size() <= 128 &&
+             data.userName is string && data.userName.size() > 0 && data.userName.size() <= 100 &&
+             (data.type == 'leave' || data.type == 'fixed_schedule' || data.type == 'register_schedule' || data.type == 'shift_swap') &&
+             (data.status == 'pending' || data.status == 'approved' || data.status == 'rejected') &&
+             data.createdAt is string && data.createdAt.size() > 0;
+    }
+
+    function isValidStaffConnectSync(data) {
+      return data.keys().hasAll(['id', 'senderName', 'message', 'timestamp', 'type']) &&
+             data.id is string && data.id.size() > 0 && data.id.size() <= 128 &&
+             data.senderName is string && data.senderName.size() > 0 && data.senderName.size() <= 100 &&
+             data.message is string && data.message.size() > 0 && data.message.size() <= 1000 &&
+             data.timestamp is string && data.timestamp.size() > 0 &&
+             (data.type == 'announcement' || data.type == 'notification' || data.type == 'system');
+    }
+
+    function isValidSchedule(data) {
+      return data.keys().hasAll(['id', 'userId', 'userName', 'date', 'shift']) &&
+             data.id is string && data.id.size() > 0 && data.id.size() <= 128 &&
+             data.userId is string && data.userId.size() > 0 && data.userId.size() <= 128 &&
+             data.userName is string && data.userName.size() > 0 && data.userName.size() <= 100 &&
+             data.date is string && data.date.size() > 0 &&
+             data.shift is string && data.shift.size() > 0;
+    }
+
+    // ===============================================================
+    // Collection Routing Match Blocks (Phase 4)
+    // ===============================================================
+
+    match /menu/{menuId} {
+      allow read: if true;
+      allow create, update: if isValidId(menuId) && isValidMenuItem(incoming());
+      allow delete: if true;
+    }
+
+    match /stores/{storeId} {
+      allow read: if true;
+      allow create, update: if isValidId(storeId) && isValidStore(incoming());
+      allow delete: if true;
+    }
+
+    match /timeClock/{stampId} {
+      allow read: if true;
+      allow create, update: if isValidId(stampId) && isValidTimeClock(incoming());
+      allow delete: if true;
+    }
+
+    match /employeeRequests/{reqId} {
+      allow read: if true;
+      allow create, update: if isValidId(reqId) && isValidEmployeeRequest(incoming());
+      allow delete: if true;
+    }
+
+    match /staffConnectSync/{syncId} {
+      allow read: if true;
+      allow create, update: if isValidId(syncId) && isValidStaffConnectSync(incoming());
+      allow delete: if true;
+    }
+
+    match /schedules/{schedId} {
+      allow read: if true;
+      allow create, update: if isValidId(schedId) && isValidSchedule(incoming());
+      allow delete: if true;
+    }
+    
+    // Allow users, inventory, suppliers, products, orders, inventorySuggestions collections for backend sync
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+    match /inventory/{itemId} {
+      allow read, write: if true;
+    }
+    match /suppliers/{supId} {
+      allow read, write: if true;
+    }
+    match /products/{prodId} {
+      allow read, write: if true;
+    }
+    match /orders/{orderId} {
+      allow read, write: if true;
+    }
+    match /inventorySuggestions/{sugId} {
+      allow read, write: if true;
+    }
+  }
+}

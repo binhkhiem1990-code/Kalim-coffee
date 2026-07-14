@@ -1,0 +1,6 @@
+{
+  "name": "Kalim Coffee POS",
+  "description": "Powerful AI-integrated POS and management system for Kalim Coffee. Features smart time forecasting, AI-driven business insights, automated inventory re-ordering, AI Barista Coaching, and staff growth assistant.",
+  "requestFramePermissions": ["geolocation", "camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

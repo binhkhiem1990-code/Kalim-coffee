@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+html, body {
+  overscroll-behavior: none; /* Prevent pull-to-refresh */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+}
+
+/* HIGH-FIDELITY PRINT STYLING OVERRIDES */
+@media print {
+  /* Hide every part of the screen by default */
+  body * {
+    visibility: hidden;
+  }
+  
+  /* Show only the active printable layout (either individual paystub or corp tax statement) */
+  .printable-only-section, 
+  .printable-only-section * {
+    visibility: visible;
+  }
+  
+  /* Reset margins for printing to allow standard paper outputs */
+  @page {
+    margin: 1.0cm;
+    size: auto;
+  }
+
+  /* Force the printable block to anchor perfectly in the top-left corner of the page */
+  .printable-only-section {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 680px !important; /* Perfect width for portrait US Letter or A4 */
+    max-width: 100% !important;
+    border: 2px solid #000000 !important;
+    padding: 24px !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    display: block !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+  
+  /* Hide any internal interactive items during printing */
+  .non-printable {
+    display: none !important;
+  }
+}

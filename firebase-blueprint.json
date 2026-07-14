@@ -1,0 +1,113 @@
+{
+  "entities": {
+    "MenuItem": {
+      "title": "MenuItem",
+      "description": "A menu item in the coffee shop.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "The name of the menu item." },
+        "price": { "type": "number", "description": "The price of the menu item." }
+      },
+      "required": ["name", "price"]
+    },
+    "Store": {
+      "title": "Store",
+      "description": "A store location.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "The name of the store." },
+        "address": { "type": "string", "description": "The address of the store." }
+      },
+      "required": ["name", "address"]
+    },
+    "TimeClock": {
+      "title": "TimeClock",
+      "description": "A timestamp record representing clock-in or clock-out events via Staff Connect.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique record id." },
+        "userId": { "type": "string", "description": "Identifies the staff user." },
+        "employeeId": { "type": "string", "description": "Staff employee display identifier." },
+        "userName": { "type": "string", "description": "Display name of the employee." },
+        "type": { "type": "string", "enum": ["in", "out"], "description": "Shift clock in or out." },
+        "timestamp": { "type": "string", "format": "date-time", "description": "Fired date-time." },
+        "location": { "type": "string", "description": "Geolocation check-in info." },
+        "timezone": { "type": "string", "description": "Local time offset." }
+      },
+      "required": ["id", "userId", "employeeId", "userName", "type", "timestamp"]
+    },
+    "EmployeeRequest": {
+      "title": "EmployeeRequest",
+      "description": "Leave, schedule, or shift swap requests raised by baristas on Kalim Staff Connect.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique request id." },
+        "userId": { "type": "string", "description": "Employee author user ID." },
+        "userName": { "type": "string", "description": "Name of requestor." },
+        "type": { "type": "string", "enum": ["leave", "fixed_schedule", "register_schedule", "shift_swap"], "description": "Intent of request." },
+        "date": { "type": "string", "description": "Target date if applicable." },
+        "details": { "type": "string", "description": "Motivation notes." },
+        "shift": { "type": "string", "description": "Requested roster shift tier." },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"], "description": "Approval resolution." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp." },
+        "myShiftId": { "type": "string", "description": "Originating shift swap reference." },
+        "coworkerId": { "type": "string", "description": "Target colleague for swaps." },
+        "coworkerShiftId": { "type": "string", "description": "Colleague shift target reference." }
+      },
+      "required": ["id", "userId", "userName", "type", "status", "createdAt"]
+    },
+    "StaffConnectSync": {
+      "title": "StaffConnectSync",
+      "description": "Real-time communication, announcement, alerts, and system notifications synced between POS and Staff Connect.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique message id." },
+        "senderId": { "type": "string", "description": "Author of sync text." },
+        "senderName": { "type": "string", "description": "Author display name." },
+        "message": { "type": "string", "description": "Announcement body / text content." },
+        "timestamp": { "type": "string", "format": "date-time", "description": "Time sent." },
+        "type": { "type": "string", "enum": ["announcement", "notification", "system"], "description": "Type classification." }
+      },
+      "required": ["id", "senderName", "message", "timestamp", "type"]
+    },
+    "Schedule": {
+      "title": "Schedule",
+      "description": "A scheduled shift assigning an employee to a shift for a specific date.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique shift record identifier." },
+        "userId": { "type": "string", "description": "Assigned user ID." },
+        "userName": { "type": "string", "description": "Name of mapped employee." },
+        "date": { "type": "string", "description": "Roster target date." },
+        "shift": { "type": "string", "description": "Active shift tier code." }
+      },
+      "required": ["id", "userId", "userName", "date", "shift"]
+    }
+  },
+  "firestore": {
+    "/menu/{menuId}": {
+      "schema": { "$ref": "MenuItem" },
+      "description": "Collection of menu items."
+    },
+    "/stores/{storeId}": {
+      "schema": { "$ref": "Store" },
+      "description": "Collection of stores."
+    },
+    "/timeClock/{stampId}": {
+      "schema": { "$ref": "TimeClock" },
+      "description": "Time clock punch records."
+    },
+    "/employeeRequests/{reqId}": {
+      "schema": { "$ref": "EmployeeRequest" },
+      "description": "Roster proposals and leaves requested by employees."
+    },
+    "/staffConnectSync/{syncId}": {
+      "schema": { "$ref": "StaffConnectSync" },
+      "description": "Broadcast channel stream to synchronize POS and Staff Connect."
+    },
+    "/schedules/{schedId}": {
+      "schema": { "$ref": "Schedule" },
+      "description": "Scheduled staff roster shifts."
+    }
+  }
+}

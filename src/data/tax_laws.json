@@ -1,0 +1,190 @@
+{
+  "regions": {
+    "AB": {
+      "regionId": "AB",
+      "province": "Alberta",
+      "country": "Canada",
+      "currency": "CAD",
+      "taxAuthority": "Canada Revenue Agency (CRA) & Alberta Treasury Board and Finance",
+      "fedSmallBusinessRate": 0.09,
+      "provSmallBusinessRate": 0.02,
+      "combinedSmallBusinessRate": 0.11,
+      "smallBusinessThreshold": 500000,
+      "generalCorpRate": 0.15,
+      "provGeneralRate": 0.08,
+      "immediateExpensingClass50": {
+        "className": "Class 50 (Computer Hardware & System Software)",
+        "rate": 0.55,
+        "immediateExpensingEligible": true,
+        "detail": "Under CRA Part XVII Immediate Expensing Provision, eligible Canadian-controlled private corporations (CCPCs) can deduct up to 100% of the cost of Class 50 computer equipment acquired after April 18, 2021, and before 2024, or claim 55% normal declining balance with 1.5x rule in the first year for other years."
+      },
+      "allowableDeductions": [
+        {
+          "category": "Technology & Automation",
+          "description": "Smart Espresso machines, IoT grinders, and automated POS systems integrated under geofencing fall under CCA Class 50. Immediate 100% tax write-off is eligible up to $1.5M yearly limit among associated CCPC groups.",
+          "complianceSection": "CRA Income Tax Folio S3-F4-C1, General Business Expenses"
+        },
+        {
+          "category": "SaaS & Digital Platform",
+          "description": "Website development (kalimcoffee.ca), digital ordering kiosk subscriptions, and real-time cloud dashboard hosting fees are 100% deductible in the year they are incurred as current operating expenses.",
+          "complianceSection": "CRA Income Tax Folio S3-F4-C1, Current vs. Capital Expenses"
+        },
+        {
+          "category": "Employee Compensation & Training",
+          "description": "Commercial barista certifications, food safety training programs, and wages (including CPP/EI employer shares) are 100% deductible operating expenses.",
+          "complianceSection": "CRA Guide T4001, Employer's Guide - Payroll Deductions and Remittances"
+        },
+        {
+          "category": "Operating Lease vs. Loan",
+          "description": "Leasing kitchen equipment or range roast machinery allows 100% write-off of the monthly rental installments, moving capital expenses (CapEx) to operating expenses (OpEx) for smooth cash flow.",
+          "complianceSection": "CRA Income Tax Act Section 16.1"
+        }
+      ],
+      "officialGuides": [
+        "CRA Guide T4012 - T2 Corporation - Income Tax Guide",
+        "Alberta AT1 - Alberta Corporate Income Tax Return Guide",
+        "CRA Guide T4001 - Employer's Guide – Payroll Deductions"
+      ],
+      "taxPlanningAdvice": [
+        "Pay sweet-and-savory dividends to shareholders instead of salary to reduce payroll taxes (CPP/EI) for executive baristas, subject to corporate-level Tax Integration rules.",
+        "Ensure GST quarterly filings are completed by the 30th of the month following the reporting period to avoid 1% + 25% late penalties.",
+        "Take advantage of the zero provincial sales tax (PST) in Alberta to purchase high-end espresso equipment at lower up-front capital outlay."
+      ]
+    },
+    "BC": {
+      "regionId": "BC",
+      "province": "British Columbia",
+      "country": "Canada",
+      "currency": "CAD",
+      "taxAuthority": "Canada Revenue Agency (CRA) & BC Ministry of Finance",
+      "fedSmallBusinessRate": 0.09,
+      "provSmallBusinessRate": 0.02,
+      "combinedSmallBusinessRate": 0.11,
+      "smallBusinessThreshold": 500000,
+      "generalCorpRate": 0.15,
+      "provGeneralRate": 0.12,
+      "immediateExpensingClass50": {
+        "className": "Class 50 (Computer Hardware & System Software)",
+        "rate": 0.55,
+        "immediateExpensingEligible": true,
+        "detail": "Under CRA and BC alignment, immediate expensing up to $1.5M for hardware and software assets is eligible for CCPCs. Helps offset the heavy capital investment in smart POS screens, GPS check-in devices, and integrated camera nodes."
+      },
+      "allowableDeductions": [
+        {
+          "category": "Employer Health Tax (EHT)",
+          "description": "In BC, if the company's total B.C. payroll is $500,000 or less, they are 100% exempt from the Employer Health Tax. For payroll between $500k and $1.5M, a notch rate applies. Plan staff roster and shifts to stay within the $500k exemption cap if operating a single café branch.",
+          "complianceSection": "BC Employer Health Tax Act, SBC 2018"
+        },
+        {
+          "category": "PST Coffee Shop Exemptions",
+          "description": "Most commercial food/beverage ingredients (beans, milk, sweeteners) are exempt from BC PST (7%). However, non-packaging paper cups, straws, cutlery, and operational technology equipment are subject to 7% PST but can be written off under capital cost allowances or general business expenses.",
+          "complianceSection": "BC Provincial Sales Tax Act [RSBC 2012]"
+        },
+        {
+          "category": "Digital Transformation Credits",
+          "description": "Investment in BC localized e-commerce tools, online food delivery portal configurations, and secure payment processing gateways on the server can be expensed directly or offset with provincial tech credits.",
+          "complianceSection": "BC Small Business Venture Capital Act"
+        }
+      ],
+      "officialGuides": [
+        "CRA Guide T4012 - T2 Corporation - Income Tax Guide",
+        "BC Corporate Income Tax Guide",
+        "BC Employer Health Tax Notice of Assessment and Payment Guide"
+      ],
+      "taxPlanningAdvice": [
+        "Keep a thorough record of GPS geofenced logs as audit proofs for employee work mileage and automated clock-ins, ensuring fully compliant tax deductions for staff-travel reimbursements.",
+        "Monitor BC EHT threshold across multiple branches. If combined group payroll exceeds $500k, associated corporations share the exemption amount."
+      ]
+    },
+    "ON": {
+      "regionId": "ON",
+      "province": "Ontario",
+      "country": "Canada",
+      "currency": "CAD",
+      "taxAuthority": "Canada Revenue Agency (CRA) & Ontario Ministry of Finance",
+      "fedSmallBusinessRate": 0.09,
+      "provSmallBusinessRate": 0.032,
+      "combinedSmallBusinessRate": 0.122,
+      "smallBusinessThreshold": 500000,
+      "generalCorpRate": 0.15,
+      "provGeneralRate": 0.115,
+      "immediateExpensingClass50": {
+        "className": "Class 50 (Computer Hardware & System Software)",
+        "rate": 0.55,
+        "immediateExpensingEligible": true,
+        "detail": "Ontario aligns with the federal immediate expensing limits, allowing local cafe locations to completely write off their digital inventory automation software, server integrations, and intelligent hardware instantly."
+      },
+      "allowableDeductions": [
+        {
+          "category": "Employer Health Tax (EHT) Exemption",
+          "description": "Ontario offers a very generous $1,000,000 exemption from Employer Health Tax for eligible private sector employers, meaning small cafe chains with less than $1M payroll pay $0 Ontario EHT.",
+          "complianceSection": "Ontario Employer Health Tax Act, R.S.O. 1990"
+        },
+        {
+          "category": "Ontario Small Business Deduction",
+          "description": "Reduces the provincial corporate tax rate on the first $500k of active business income down from 11.5% general rate to 3.2% small business rate.",
+          "complianceSection": "Ontario Taxation Act, 2007"
+        },
+        {
+          "category": "Ontario Business Transit & Delivery Expenses",
+          "description": "Cost of delivering coffee goods, leasing and registering delivery vans, and reimbursing barista travel times via smart GPS logs can be fully expensed with 100% operating write-off.",
+          "complianceSection": "CRA Guide T4002 - Business and Professional Income"
+        }
+      ],
+      "officialGuides": [
+        "CRA Guide T4012 - T2 Corporation - Income Tax Guide",
+        "Ontario Corporate Income Tax return (Schedule 500 equivalent)",
+        "Ontario Employer Health Tax Guide for Small Businesses"
+      ],
+      "taxPlanningAdvice": [
+        "Leverage the Input Tax Credit (ITC) mechanism to recover 13% HST paid on coffee shop lease, power supply, roasting machinery, and premium furniture.",
+        "Ensure all employee perks (like free gourmet croissants or daily lattes) conform to CRA administrative policy on non-taxable employee meals to prevent unexpected payroll tax audits."
+      ]
+    },
+    "US-CA": {
+      "regionId": "US-CA",
+      "province": "California",
+      "country": "USA",
+      "currency": "USD",
+      "taxAuthority": "Internal Revenue Service (IRS) & California Franchise Tax Board (FTB)",
+      "fedSmallBusinessRate": 0.21,
+      "provSmallBusinessRate": 0.0884,
+      "combinedSmallBusinessRate": 0.2984,
+      "smallBusinessThreshold": 1000000,
+      "generalCorpRate": 0.21,
+      "provGeneralRate": 0.0884,
+      "immediateExpensingClass50": {
+        "className": "Section 179 Property & 168(k) Bonus Depreciation",
+        "rate": 1.0,
+        "immediateExpensingEligible": true,
+        "detail": "Under US Section 179, businesses can immediately expense up to $1.22M of eligible equipment (computers, POS systems, espresso gear). California conforms partially to Section 179 but maintains different depreciation pathways for regular items."
+      },
+      "allowableDeductions": [
+        {
+          "category": "Section 179 Tax Deduction",
+          "description": "Direct deductibility of software, advanced point-of-sale platforms, and coffee roasting hardware instead of depreciating them over 5-7 years.",
+          "complianceSection": "IRC Section 179, California FTB Form 3885"
+        },
+        {
+          "category": "Ordinary and Necessary Business Expenses",
+          "description": "Store rent, water filters, packaging, food handler permit costs, employee state disability insurance (CASDI) payments, and marketing ads are 100% deductible.",
+          "complianceSection": "IRC Section 162"
+        },
+        {
+          "category": "Work Opportunity Tax Credit (WOTC)",
+          "description": "Reduces federal tax liabilities when hiring baristas and workers from target veteran or barrier-to-work groups.",
+          "complianceSection": "IRS Form 5884"
+        }
+      ],
+      "officialGuides": [
+        "IRS Publication 535 - Business Expenses Guide",
+        "California FTB Publication 1060 - Guide for Corporations",
+        "IRS Section 179 Depreciation Rules"
+      ],
+      "taxPlanningAdvice": [
+        "Plan your capital purchases carefully before Dec 31 to claim Section 179 benefits in the current tax year.",
+        "Maintain strict digital ledgers showing real-time tips tracking, as the IRS requires precise reporting of tip pools via Form 8027 (Employer's Annual Information Return of Tip Income) if total staff count exceeds threshold."
+      ]
+    }
+  }
+}
